@@ -1,0 +1,61 @@
+
+
+h1{
+    text-align: center;
+}
+
+
+
+.f-info{
+    margin-top: 20px;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(73, 78, 78);
+    position: relative;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   flex-direction: column;
+
+
+}
+.f-info-social i{
+    margin: 0 10px 0 10px;
+    color: white;
+}
+
+.f-info-text{
+    padding: 8px;
+    color: white;
+}
+
+
+
+footer{
+    position: relative;
+    bottom: 5px;
+    width: 100%;
+  
+}
+
+
+.card{
+    border: none;
+    margin-bottom: 2rem;
+    margin-top: 5px;
+
+}
+
+.card-img-top{
+    border-radius: 2rem !important;
+
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.link{
+    text-decoration: none;
+}
+
+

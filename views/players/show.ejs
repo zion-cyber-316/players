@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  </head>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div >
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Stats</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/players">Home</a>
+        <a class="nav-link" href="/new">AddPlayer</a>
+    
+      </div>
+      <div class="navbar-nav ms-auto">
+       <% if(!currUser){%> 
+        <a class="nav-link active" aria-current="page" href="/singup">singup</a>
+        <a class="nav-link" href="/login">Login</a>
+
+        <% } %>
+         <% if(currUser){%> 
+         <a class="nav-link" href="/logout">Logout</a>
+    <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+<div class="showcard row cols-8 offset-2 mt-2">
+
+
+
+<div class="card row   " style="width: 20rem;">
+  <img src="<%= Data.image.url %>" class="card-img-top" alt="players" style=" height: 300px;">
+  <div class="card-body">
+    <h3><%= Data.playerName %></h3>
+  <ul>
+    <li> Matches :<%= Data.matches %></li>
+    <li> Runs : <%= Data.runs %></li>
+       <li> Hundred :<%= Data.hundred %></li>
+    <li> Fifty : <%= Data.fifty %></li>
+       <li> Four :<%= Data.six %></li>
+    <li> Six : <%= Data.four %></li>
+  </ul>
+  </div>
+</div>
+
+ <div class="delete">
+     <a href="/players/<%= Data._id %>/edit"><p class="btn btn-primary">Edit</p></a>
+<form  method="POST" action="/players/<%= Data._id %>?_method=DELETE">
+    
+     <button class="btn btn-danger">Delete</button>
+</form>
+    
+ </div>
+
+
+
+
+
+    
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+  <div class="f-info">
+    <div class="f-info-social">
+       <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+    </div>
+    <div class="f-info-text">
+      &copy; Gaurav Mehra Private Limited
+    </div>
+    <div class="f-info-links">
+      <a href="/">Privecy</a>
+          <a href="/">Terms</a>
+    </div>
+  </div>
+</footer>
+
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
