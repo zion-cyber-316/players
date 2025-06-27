@@ -32,16 +32,16 @@ const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const { deserialize } = require('v8');
 
-let mongoose_url = "mongodb://127.0.0.1:27017/players-stats";
+// let mongoose_url = "mongodb://127.0.0.1:27017/players-stats";
 
-// const dburl =process.env.ATLASDB_URL;
+const dburl ="mongodb+srv://gaurav9759434559:aZeYhFn36J3S4e4G@cluster0.ohqzicg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 main().then(()=>{
     console.log("connecting to DB")
 }).catch(()=>{
     console.log("error")
 })
 async function  main(){
-     await mongoose.connect("mongodb+srv://gaurav9759434559:aZeYhFn36J3S4e4G@cluster0.ohqzicg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+     await mongoose.connect(dburl);
     // await mongoose.connect(mongoose_url);
 }
 
@@ -66,7 +66,7 @@ app.listen(port,()=>{
 
 
  const store = MongoStore.create({
-    mongoUrl :"mongodb+srv://gaurav9759434559:4Pi4asUSOnjBhfmK@cluster0.dj63e34.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    mongoUrl :dburl,
     crypto:{
          secret :"supersecretcode",
 
