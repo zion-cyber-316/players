@@ -19,7 +19,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link active" aria-current="page" href="/players">Home</a>
         <a class="nav-link" href="/new">AddPlayer</a>
     
       </div>
@@ -57,8 +57,8 @@
 </div>
 
  <div class="delete">
-     <a href="/<%= Data._id %>/edit"><p class="btn btn-primary">Edit</p></a>
-<form  method="POST" action="/<%= Data._id %>?_method=DELETE">
+     <a href="/players/<%= Data._id %>/edit"><p class="btn btn-primary">Edit</p></a>
+<form  method="POST" action="/players/<%= Data._id %>?_method=DELETE">
     
      <button class="btn btn-danger">Delete</button>
 </form>
@@ -116,8 +116,8 @@
       &copy; Gaurav Mehra Private Limited
     </div>
     <div class="f-info-links">
-      <a href="#">Privecy</a>
-          <a href="#">Terms</a>
+      <a href="/">Privecy</a>
+          <a href="/">Terms</a>
     </div>
   </div>
 </footer>
