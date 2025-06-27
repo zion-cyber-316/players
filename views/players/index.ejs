@@ -19,7 +19,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/players">Home</a>
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
         <a class="nav-link" href="/new">AddPlayer</a>
     
       </div>
@@ -57,7 +57,7 @@
 <div class="row  row-cols-lg-3  row-cols-md-2   row-cols-sm-1">
 
   <%for( data of playerData ){%>
-<a href="/players/<%= data._id %>" class="link">
+<a href="/<%= data._id %>" class="link">
 
   <div class="card" >
   <img src="<%= data.image.url %>" class="card-img-top" alt="players" style="height:  20rem">
@@ -108,8 +108,8 @@
       &copy; Gaurav Mehra Private Limited
     </div>
     <div class="f-info-links">
-      <a href="/">Privecy</a>
-          <a href="/">Terms</a>
+      <a href="#">Privecy</a>
+          <a href="#">Terms</a>
     </div>
   </div>
 </footer>

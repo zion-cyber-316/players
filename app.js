@@ -100,13 +100,13 @@ app.listen(port,()=>{
 
 
 
-app.get("/players",async (req,res)=>{
+app.get("/",async (req,res)=>{
      
 res.cookie("greate","namste",{signed:true});
 
 let playerData = await Players.find();
 
-    res.render("./players/index.ejs",{playerData, msg : req.flash("success")});
+    res.render("./index.ejs",{playerData, msg : req.flash("success")});
 
    
 })
@@ -120,13 +120,13 @@ app.get("/new",(req,res)=>{
       res.redirect("/login")
   
     }else{
-        res.render("./players/new.ejs")
+        res.render("./new.ejs")
     }
     
 })
 
 
-app.post("/player/test",upload.single("player[image]"), async (req,res)=>{
+app.post("/test",upload.single("player[image]"), async (req,res)=>{
 
     let url = req.file.path;
     let filename = req.file.filename;
@@ -136,12 +136,12 @@ const newPlyer =  new Players(req.body.player);
     newPlyer.image ={url,filename};
   await newPlyer.save();
   req.flash("success","Add new Player");
-res.redirect("/players")
+res.redirect("/")
 
 })
 
 
-app.get("/players/:id",async (req,res)=>{
+app.get("/:id",async (req,res)=>{
 
     const gaurav = req.user;
     console.log(gaurav);
@@ -149,23 +149,23 @@ app.get("/players/:id",async (req,res)=>{
 
     const Data = await Players.findById(id);
     // console.log(Data)
-res.render("./players/show.ejs",{Data,gaurav})
+res.render("./show.ejs",{Data,gaurav})
   
 })
 
 //edit route 
 
-app.get("/players/:id/edit", async(req,res)=>{
+app.get("/:id/edit", async(req,res)=>{
       let {id} = req.params;
       const Data = await Players.findById(id);
       console.log(Data)
-  res.render("./players/edit.ejs",{Data})
+  res.render("./edit.ejs",{Data})
 })
 
 
 // update route 
 
-app.put("/players/:id",upload.single("player[image]"), async(req,res)=>{
+app.put("/:id",upload.single("player[image]"), async(req,res)=>{
       let {id} = req.params;
 let updplayer = await Players.findByIdAndUpdate(id,{...req.body.player});
 
@@ -175,17 +175,17 @@ if(typeof req.file !== "undefined"){
     updplayer.image ={url,filename};
   await updplayer.save();
 }
-res.redirect("/players")
+res.redirect("/")
 
 })
 
 //delete route
 
-app.delete("/players/:id",async(req,res)=>{
+app.delete("/:id",async(req,res)=>{
      let {id} = req.params;
      await Players.findByIdAndDelete(id);
        req.flash("success"," Player Delete");
-     res.redirect("/players")
+     res.redirect("/")
 
 
 })
@@ -199,11 +199,11 @@ app.delete("/players/:id",async(req,res)=>{
 
 
 app.get("/singup",(req,res)=>{
-    res.render("./players/singup.ejs")
+    res.render("./singup.ejs")
    
 })
 app.get("/login",(req,res)=>{
-    res.render("./players/login.ejs")
+    res.render("./login.ejs")
    
 })
 
@@ -218,7 +218,7 @@ app.post("/singup" , async(req,res)=>{
 //  res.redirect("/players")
 //     })
  req.flash("success"," User register");
- res.redirect("/players")
+ res.redirect("/")
 })
 
 
@@ -227,7 +227,7 @@ app.post("/login",passport.authenticate("local",{
     successFlash:true,
 }) , async(req,res)=>{
      req.flash("success"," User login succesfully");
-     res.redirect("/players")
+     res.redirect("/")
     
 })
 
@@ -236,13 +236,13 @@ app.get("/logout",(req,res)=>{
   if(req.isAuthenticated()){
       req.logout(()=>{
   req.flash("success"," User logout succesfully");
-    res.redirect("/players")
+    res.redirect("/")
     
 
     })
   }else{
       req.flash("success"," User must be login");
-     res.redirect("/players")
+     res.redirect("/")
   }
 })
 
