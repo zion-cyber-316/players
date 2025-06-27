@@ -1,10 +1,10 @@
-// if(process.env.NODE_ENV != "production"){
-// require('dotenv').config()
-// }
+if(process.env.NODE_ENV != "production"){
+require('dotenv').config()
+}
 
 
 
-require('dotenv').config();
+
 
 
 const express = require("express");
@@ -100,7 +100,7 @@ app.listen(port,()=>{
 
 
 
-app.get("/",async (req,res)=>{
+app.get("/players",async (req,res)=>{
      
 res.cookie("greate","namste",{signed:true});
 
@@ -126,7 +126,7 @@ app.get("/new",(req,res)=>{
 })
 
 
-app.post("/test",upload.single("player[image]"), async (req,res)=>{
+app.post("/player/test",upload.single("player[image]"), async (req,res)=>{
 
     let url = req.file.path;
     let filename = req.file.filename;
@@ -136,12 +136,12 @@ const newPlyer =  new Players(req.body.player);
     newPlyer.image ={url,filename};
   await newPlyer.save();
   req.flash("success","Add new Player");
-res.redirect("/")
+res.redirect("/players")
 
 })
 
 
-app.get("/:id",async (req,res)=>{
+app.get("/players/:id",async (req,res)=>{
 
     const gaurav = req.user;
     console.log(gaurav);
@@ -155,7 +155,7 @@ res.render("./players/show.ejs",{Data,gaurav})
 
 //edit route 
 
-app.get("/:id/edit", async(req,res)=>{
+app.get("/players/:id/edit", async(req,res)=>{
       let {id} = req.params;
       const Data = await Players.findById(id);
       console.log(Data)
@@ -165,7 +165,7 @@ app.get("/:id/edit", async(req,res)=>{
 
 // update route 
 
-app.put("/:id",upload.single("player[image]"), async(req,res)=>{
+app.put("/players/:id",upload.single("player[image]"), async(req,res)=>{
       let {id} = req.params;
 let updplayer = await Players.findByIdAndUpdate(id,{...req.body.player});
 
@@ -175,17 +175,17 @@ if(typeof req.file !== "undefined"){
     updplayer.image ={url,filename};
   await updplayer.save();
 }
-res.redirect("/")
+res.redirect("/players")
 
 })
 
 //delete route
 
-app.delete("/:id",async(req,res)=>{
+app.delete("/players/:id",async(req,res)=>{
      let {id} = req.params;
      await Players.findByIdAndDelete(id);
        req.flash("success"," Player Delete");
-     res.redirect("/")
+     res.redirect("/players")
 
 
 })
@@ -218,7 +218,7 @@ app.post("/singup" , async(req,res)=>{
 //  res.redirect("/players")
 //     })
  req.flash("success"," User register");
- res.redirect("/")
+ res.redirect("/players")
 })
 
 
@@ -227,7 +227,7 @@ app.post("/login",passport.authenticate("local",{
     successFlash:true,
 }) , async(req,res)=>{
      req.flash("success"," User login succesfully");
-     res.redirect("/")
+     res.redirect("/players")
     
 })
 
@@ -236,13 +236,13 @@ app.get("/logout",(req,res)=>{
   if(req.isAuthenticated()){
       req.logout(()=>{
   req.flash("success"," User logout succesfully");
-    res.redirect("/")
+    res.redirect("/players")
     
 
     })
   }else{
       req.flash("success"," User must be login");
-     res.redirect("/")
+     res.redirect("/players")
   }
 })
 
