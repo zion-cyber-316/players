@@ -106,7 +106,7 @@ res.cookie("greate","namste",{signed:true});
 
 let playerData = await Players.find();
 
-    res.render("./index.ejs",{playerData, msg : req.flash("success")});
+    res.render("./players/index.ejs",{playerData, msg : req.flash("success")});
 
    
 })
@@ -120,7 +120,7 @@ app.get("/new",(req,res)=>{
       res.redirect("/login")
   
     }else{
-        res.render("./new.ejs")
+        res.render("./players/new.ejs")
     }
     
 })
@@ -149,7 +149,7 @@ app.get("/:id",async (req,res)=>{
 
     const Data = await Players.findById(id);
     // console.log(Data)
-res.render("./show.ejs",{Data,gaurav})
+res.render("./players/show.ejs",{Data,gaurav})
   
 })
 
@@ -159,7 +159,7 @@ app.get("/:id/edit", async(req,res)=>{
       let {id} = req.params;
       const Data = await Players.findById(id);
       console.log(Data)
-  res.render("./edit.ejs",{Data})
+  res.render("./players/edit.ejs",{Data})
 })
 
 
@@ -199,11 +199,11 @@ app.delete("/:id",async(req,res)=>{
 
 
 app.get("/singup",(req,res)=>{
-    res.render("./singup.ejs")
+    res.render("./players/singup.ejs")
    
 })
 app.get("/login",(req,res)=>{
-    res.render("./login.ejs")
+    res.render("./players/login.ejs")
    
 })
 
